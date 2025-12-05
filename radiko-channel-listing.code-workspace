@@ -1,0 +1,89 @@
+{
+  "folders": [
+    {
+      "name": "radiko channel listing",
+      "path": ".",
+    },
+  ],
+  "settings": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "typescript.tsc.autoDetect": "off",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit",
+    },
+    "files.associations": {
+      ".eslintrc": "jsonc",
+      ".prettierrc": "jsonc",
+      ".eslintignore": "ignore",
+      "*.css": "tailwindcss",
+    },
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "html",
+      "typescript",
+      "typescriptreact",
+    ],
+    "javascript.validate.enable": false,
+    "javascript.format.enable": false,
+    "typescript.format.enable": false,
+    "search.exclude": {
+      ".git": true,
+      ".eslintcache": true,
+      ".erb/dll": true,
+      "release/{build,app/dist}": true,
+      "node_modules": true,
+      "npm-debug.log.*": true,
+      "test/**/__snapshots__": true,
+      "package-lock.json": true,
+      "*.{css,sass,scss}.d.ts": true,
+    },
+    "launch": {
+      "version": "0.2.0",
+      "configurations": [
+        {
+          "name": "Electron: Main",
+          "type": "node",
+          "request": "launch",
+          "runtimeExecutable": "npm",
+          "runtimeArgs": ["run", "start"],
+          "env": {
+            "MAIN_ARGS": "--inspect=5858 --remote-debugging-port=9223",
+          },
+        },
+        {
+          "name": "Electron: Renderer",
+          "type": "chrome",
+          "request": "attach",
+          "port": 9223,
+          "webRoot": "${workspaceFolder}",
+          "timeout": 15000,
+        },
+      ],
+      "compounds": [
+        {
+          "name": "Electron: All",
+          "configurations": ["Electron: Main", "Electron: Renderer"],
+        },
+      ],
+    },
+  },
+  "extensions": {
+    "recommendations": [
+      "christian-kohler.path-intellisense",
+      "EditorConfig.EditorConfig",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "amodio.tsl-problem-matcher",
+      "bradlc.vscode-tailwindcss",
+    ],
+  },
+}
