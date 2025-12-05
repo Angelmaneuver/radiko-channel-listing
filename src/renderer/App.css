@@ -6,7 +6,6 @@ body {
   font-size: small;
   background: rgba(0, 0, 0, 0);
   overflow: hidden;
-  -webkit-app-region: drag;
 }
 
 section.titlebar {
@@ -14,6 +13,7 @@ section.titlebar {
   height: 39.59px;
   align-items: center;
   justify-content: space-between;
+  -webkit-app-region: drag;
 }
 
 section.titlebar > div.title {
@@ -49,7 +49,6 @@ div.stations {
   overflow-y: scroll;
   overflow-x: hidden;
   user-select: none;
-  -webkit-app-region: no-drag;
 }
 
 section.station {

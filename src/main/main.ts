@@ -17,6 +17,7 @@ import stateKeeper from 'electron-window-state';
 
 import MenuBuilder from './menu';
 import { getSchedule } from './radiko';
+import getStore from './store';
 import { resolveHtmlPath } from './util';
 
 class AppUpdater {
@@ -35,6 +36,26 @@ ipcMain.on('ipc-schedule', async (event) => {
 
   event.reply('ipc-schedule', schedule);
 });
+
+ipcMain.on('ipc-set-pinned', async (event, arg) => {
+  const pinned = arg ?? false;
+  const store = await getStore();
+
+  store.set('pinned', pinned);
+
+  app.relaunch();
+  app.quit();
+});
+
+ipcMain.on('ipc-get-pinned', async (event) => {
+  const store = await getStore();
+
+  event.reply('ipc-get-pinned', store.get('pinned'));
+});
+
+ipcMain.on('ipc-mouse-event', async (event, arg) =>
+  mainWindow?.setIgnoreMouseEvents(!(arg ?? false), { forward: true }),
+);
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -84,6 +105,8 @@ const createWindow = async () => {
     ? path.join(process.resourcesPath, 'assets')
     : path.join(__dirname, '../../assets');
 
+  const WIDTH = isDebug ? 1028 : 420;
+
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
   };
@@ -92,19 +115,21 @@ const createWindow = async () => {
     defaultHeight: 728,
   });
 
-  const width = isDebug ? 1028 : 420;
+  const store = await getStore();
+  const isPinned = store.get('pinned') ?? false;
 
   mainWindow = new BrowserWindow({
     show: false,
     x: windowState.x,
     y: windowState.y,
-    width,
+    width: WIDTH,
     height: windowState.height,
-    minWidth: width,
-    maxWidth: width,
-    transparent: true,
-    frame: false,
+    minWidth: WIDTH,
+    maxWidth: WIDTH,
     icon: getAssetPath('icon.png'),
+    titleBarStyle: 'hidden',
+    frame: !isPinned,
+    transparent: isPinned,
     skipTaskbar: true,
     webPreferences: {
       preload: app.isPackaged
@@ -112,6 +137,8 @@ const createWindow = async () => {
         : path.join(__dirname, '../../.erb/dll/preload.js'),
     },
   });
+
+  mainWindow.setIgnoreMouseEvents(isPinned, { forward: true });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 

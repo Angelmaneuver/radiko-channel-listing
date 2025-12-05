@@ -2,7 +2,11 @@
 /* eslint no-unused-vars: off */
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-export type Channels = 'ipc-schedule';
+export type Channels =
+  | 'ipc-schedule'
+  | 'ipc-set-pinned'
+  | 'ipc-get-pinned'
+  | 'ipc-mouse-event';
 
 const electronHandler = {
   ipcRenderer: {
