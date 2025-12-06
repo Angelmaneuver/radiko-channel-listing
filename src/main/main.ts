@@ -43,7 +43,13 @@ ipcMain.on('ipc-set-pinned', async (event, arg) => {
 
   store.set('pinned', pinned);
 
-  app.relaunch();
+  const execPath = process.env.PORTABLE_EXECUTABLE_FILE || process.execPath;
+
+  app.relaunch({
+    execPath,
+    args: process.argv.slice(1),
+  });
+
   app.quit();
 });
 

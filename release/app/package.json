@@ -1,6 +1,6 @@
 {
   "name": "radiko-channel-listing",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A desktop app displaying the current program listing for radiko.",
   "license": "MIT",
   "author": {
