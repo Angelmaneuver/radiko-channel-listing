@@ -1,8 +1,10 @@
 // Check if the renderer and main bundles are built
-import path from 'path';
-import chalk from 'chalk';
 import fs from 'fs';
 import { TextEncoder, TextDecoder } from 'node:util';
+import path from 'path';
+
+import chalk from 'chalk';
+
 import webpackPaths from '../configs/webpack.paths';
 
 const mainPath = path.join(webpackPaths.distMainPath, 'main.js');

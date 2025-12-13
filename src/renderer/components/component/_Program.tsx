@@ -13,7 +13,7 @@ function Program({ programs }: { programs: Array<Data> }) {
   return (
     <section className="programs">
       <div className="program">
-        <img src={programs[0].img} />
+        <img src={programs[0].img} alt={programs[0].img} />
 
         <div className="information">
           <div className="flex-column">

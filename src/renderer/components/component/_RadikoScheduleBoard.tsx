@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 
+import { next } from '@/renderer/utils';
+
 import Stations from './_Stations';
 import TitleBar from './_TitleBar';
 
 import type { RadioStations } from '@/main/radiko';
-import { next } from '@/renderer/utils';
 
 const intervalMinute = 5;
 const refresh = intervalMinute * 60 * 1000;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-undef
 let intervalEvent: NodeJS.Timeout;
 
 function RadikoScheduleBoard() {
@@ -32,7 +34,7 @@ function RadikoScheduleBoard() {
       // eslint-disable-next-line no-console
       console.log(arg);
 
-      setPinned(arg ? true : false);
+      setPinned(!!arg);
     });
 
     window.electron?.ipcRenderer.sendMessage('ipc-schedule');

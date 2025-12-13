@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+
 import { rimrafSync } from 'rimraf';
+
 import webpackPaths from '../configs/webpack.paths';
 
 export default function deleteSourceMaps() {
