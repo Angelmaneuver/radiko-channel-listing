@@ -86,7 +86,7 @@
       "\\.(ts|tsx|js|jsx)$": "ts-jest"
     },
     "transformIgnorePatterns": [
-      "/node_modules/(?!(chalk)/)"
+      "node_modules/(?!(chalk)/)"
     ]
   },
   "dependencies": {
