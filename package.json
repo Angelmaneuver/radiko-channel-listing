@@ -242,7 +242,8 @@
     "publish": {
       "provider": "github",
       "owner": "Angelmaneuver",
-      "repo": "radiko-channel-listing"
+      "repo": "radiko-channel-listing",
+      "releaseType": "release"
     }
   },
   "devEngines": {
