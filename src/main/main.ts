@@ -144,7 +144,9 @@ const createWindow = async () => {
     },
   });
 
-  mainWindow.setWindowButtonVisibility(false);
+  if (process.platform === 'darwin') {
+    mainWindow.setWindowButtonVisibility(false);
+  }
 
   mainWindow.setAlwaysOnTop(true, 'modal-panel');
 
