@@ -1,3 +1,7 @@
+# 0.0.4
+
+- Fine-tuned for Mac
+
 # 0.0.3
 
 - Fixed the bug where it wouln't relaunch
