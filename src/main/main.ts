@@ -146,9 +146,9 @@ const createWindow = async () => {
 
   if (process.platform === 'darwin') {
     mainWindow.setWindowButtonVisibility(false);
-  }
 
-  mainWindow.setAlwaysOnTop(true, 'modal-panel');
+    mainWindow.setAlwaysOnTop(true, 'modal-panel');
+  }
 
   mainWindow.setIgnoreMouseEvents(isPinned, { forward: true });
 
