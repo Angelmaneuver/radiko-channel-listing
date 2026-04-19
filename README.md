@@ -1,12 +1,7 @@
-> [!CAUTION]
-> This app is for Japanese users only.
+# Tauri + React + Typescript
 
-# radiko channel listing
+This template should help get you started developing with Tauri, React and Typescript in Vite.
 
-<div style="text-align:center;">
+## Recommended IDE Setup
 
-![app image](./.erb/img/app-image.gif)
-
-</div>
-
-これは電光掲示板のような外観のウィジェットライクなアプリです。デスクトップ上に放送中のradikoの番組表を表示できます。
+- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
