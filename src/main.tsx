@@ -12,6 +12,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
 document.body.addEventListener('keydown', async (event) => {
   if (event.key === 'F12') {
+    event.preventDefault();
+
     await invoke('devtool');
   }
 });
