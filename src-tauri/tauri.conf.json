@@ -19,7 +19,9 @@
         "maxWidth": 420,
         "decorations": false,
         "hiddenTitle": true,
-        "transparent": true
+        "skipTaskbar": true,
+        "transparent": true,
+        "shadow": false
       }
     ],
     "macOSPrivateApi": true,
