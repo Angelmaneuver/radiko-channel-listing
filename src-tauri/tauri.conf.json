@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "radiko-channel-listing",
-  "version": "0.1.0",
-  "identifier": "radiko-channel-listing",
+  "version": "1.0.0",
+  "identifier": "angelmaneuver.radiko.channel.listing",
   "build": {
     "beforeDevCommand": "bun run dev",
     "devUrl": "http://localhost:1420",
