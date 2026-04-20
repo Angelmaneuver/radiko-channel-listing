@@ -13,13 +13,21 @@ pub fn devtool(app: AppHandle) {
 
         if window.is_devtools_open() {
             window.close_devtools();
-            window::set_window_size(&window, Some(config.width), None);
+
+            #[cfg(not(target_os = "windows"))]
+            {
+                window::set_window_size(&window, Some(config.width), None);
+            }
 
             min = config.min_width.unwrap();
             max = config.max_width.unwrap();
         } else {
             window.open_devtools();
-            window::set_window_size(&window, Some(window::DEBUG_WIDTH), None);
+
+            #[cfg(not(target_os = "windows"))]
+            {
+                window::set_window_size(&window, Some(window::DEBUG_WIDTH), None);
+            }
 
             min = window::DEBUG_WIDTH;
             max = window::DEBUG_WIDTH;
