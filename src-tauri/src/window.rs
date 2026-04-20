@@ -1,5 +1,7 @@
 use tauri::{AppHandle, LogicalSize, Manager, PhysicalSize, Size, WebviewWindow};
 
+use crate::store;
+
 pub static DEBUG_WIDTH: f64 = 1048.0;
 
 pub fn get_main_window(app: AppHandle) -> WebviewWindow {
@@ -50,11 +52,22 @@ pub fn set_available_size(
 }
 
 #[tauri::command]
-pub fn set_click_through(_window: tauri::Window, _ignore: bool) {
-    #[cfg(not(debug_assertions))]
-    {
-        _window.set_ignore_cursor_events(_ignore).unwrap();
+pub fn change_minimum(app: AppHandle, minimunize: bool) -> Result<(), String> {
+    let window = get_main_window(app.clone());
+
+    if minimunize {
+        let size = get_current_size(&window).to_logical::<f64>(window.scale_factor().unwrap());
+
+        set_window_size(&window, None, Some(39.59));
+
+        store::set_height(app.clone(), size.height)?;
+    } else {
+        let height = store::get_height(app.clone())?;
+
+        set_window_size(&window, None, Some(height));
     }
+
+    return store::set_minimum(app, minimunize);
 }
 
 #[tauri::command]

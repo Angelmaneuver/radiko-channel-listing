@@ -2,7 +2,7 @@ import { Minus, Plus, RotateCcw, X } from 'lucide-react';
 import { Dispatch, JSX, SetStateAction } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { close } from '@/components/window';
+import { changeMinimum, close } from '@/components/window';
 
 function TitleBar({
   isMinimum,
@@ -25,7 +25,15 @@ function TitleBar({
         <RotateCcw />
       </Button>
 
-      <Button className="button" onClick={() => setMinimum(!isMinimum)}>
+      <Button
+        className="button"
+        onClick={async () => {
+          const is_minimum = !isMinimum;
+
+          setMinimum(is_minimum);
+          changeMinimum(is_minimum);
+        }}
+      >
         {isMinimum ? <Plus /> : <Minus />}
       </Button>
 

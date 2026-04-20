@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { is_minimum } from '@/components/store';
 import { next } from '@/lib/utils';
 
-import { clickThrough } from '../../window';
 import { get } from '../function';
 import type { ChannelData } from '../interface';
 
@@ -24,11 +24,15 @@ function RadikoScheduleBoard() {
     });
   };
 
-  const onMouseEnter = () => clickThrough(false);
-  const onMouseLeave = () => clickThrough(true);
+  const onMouseEnter = () => {};
+  const onMouseLeave = () => {};
 
   useEffect(() => {
     load();
+
+    is_minimum().then((value) => {
+      setMinimum(value);
+    });
 
     let intervalEvent: NodeJS.Timeout;
 

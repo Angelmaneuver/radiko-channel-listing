@@ -1,4 +1,4 @@
-import clickThrough from './_clickThrough';
+import changeMinimum from './_changeMinimum';
 import close from './_close';
 
-export { clickThrough, close };
+export { changeMinimum, close };
